@@ -4,6 +4,11 @@ Webapp interactive pour une agence de voyage temporel fictive, créée avec IA g
 
 **URL du site :** https://timetravel-agency-topaz.vercel.app
 
+## Equipe
+- Eymen Belhimer
+- Esteban Minisini
+- Nadir EL BOUAZZAOUI
+
 ## Stack Technique
 - React 19 + Vite 6
 - Lucide React (icônes)
@@ -21,6 +26,7 @@ Webapp interactive pour une agence de voyage temporel fictive, créée avec IA g
 - Navigation fluide avec smooth scroll
 - Design responsive (mobile + desktop)
 - Thème sombre premium avec accents dorés
+- Lazy loading des images
 
 ## IA Utilisées
 - Code : Claude (Anthropic)

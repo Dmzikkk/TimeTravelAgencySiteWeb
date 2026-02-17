@@ -435,6 +435,7 @@ export default function TimeTravelAgency() {
                   <img
                     src={dest.image}
                     alt={dest.name}
+                    loading="lazy"
                     style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s" }}
                     onMouseEnter={(e) => (e.target.style.transform = "scale(1.1)")}
                     onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
@@ -473,7 +474,7 @@ export default function TimeTravelAgency() {
       {selectedDest && (
         <div className="modal-backdrop" style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }} onClick={() => setSelectedDest(null)}>
           <div style={{ background: "#13131a", borderRadius: 20, maxWidth: 600, width: "100%", maxHeight: "85vh", overflow: "auto", border: "1px solid rgba(212,175,55,0.2)", position: "relative" }} onClick={(e) => e.stopPropagation()}>
-            <img src={selectedDest.image} alt={selectedDest.name} style={{ width: "100%", height: 240, objectFit: "cover", borderRadius: "20px 20px 0 0" }} />
+            <img src={selectedDest.image} alt={selectedDest.name} loading="lazy" style={{ width: "100%", height: 240, objectFit: "cover", borderRadius: "20px 20px 0 0" }} />
             <button onClick={() => setSelectedDest(null)} style={{ position: "absolute", top: 16, right: 16, background: "rgba(10,10,15,0.7)", border: "none", borderRadius: "50%", width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", backdropFilter: "blur(4px)" }}>
               <X size={18} color="#e8e0d0" />
             </button>
@@ -594,7 +595,7 @@ export default function TimeTravelAgency() {
                 <div style={{ textAlign: "center", position: "relative" }}>
                   <div style={{ fontSize: 14, color: "#D4AF37", letterSpacing: 3, marginBottom: 16 }} className="font-sans">VOTRE DESTINATION IDÉALE</div>
                   <div style={{ width: 100, height: 100, borderRadius: "50%", overflow: "hidden", margin: "0 auto 20px", border: "3px solid #D4AF37" }}>
-                    <img src={quizResult.image} alt={quizResult.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={quizResult.image} alt={quizResult.name} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   <h3 className="text-gradient" style={{ fontSize: 32, fontWeight: 600, marginBottom: 8 }}>{quizResult.name}</h3>
                   <p style={{ fontSize: 16, color: "#a89e8c", marginBottom: 8 }}>{quizResult.epoch}</p>
