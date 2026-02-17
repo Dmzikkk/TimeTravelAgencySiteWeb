@@ -16,7 +16,7 @@ const DESTINATIONS = [
     difficulty: "Facile",
     color: "#D4AF37",
     gradient: "from-amber-900/80 to-amber-950/90",
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80",
+    image: "/images/Paris1889_format169.png",
   },
   {
     id: "cretace",
@@ -32,7 +32,7 @@ const DESTINATIONS = [
     difficulty: "Extrême",
     color: "#2ECC71",
     gradient: "from-emerald-900/80 to-emerald-950/90",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80",
+    image: "/images/Cretace_format169.png",
   },
   {
     id: "florence",
@@ -48,7 +48,7 @@ const DESTINATIONS = [
     difficulty: "Modéré",
     color: "#E74C3C",
     gradient: "from-red-900/80 to-red-950/90",
-    image: "https://images.unsplash.com/photo-1541370463517-7c6e3b3e1e6c?w=800&q=80",
+    image: "/images/RennaissanceFlorence_format169.png",
   },
 ];
 
@@ -225,7 +225,9 @@ export default function TimeTravelAgency() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatMessages, chatLoading]);
 
-  /* ——— Chat handler using Anthropic API ——— */
+  /* ——— Chat handler using Groq API ——— */
+  const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || "";
+
   const sendChat = async () => {
     if (!chatInput.trim() || chatLoading) return;
     const userMsg = chatInput.trim();
@@ -235,18 +237,23 @@ export default function TimeTravelAgency() {
 
     try {
       const history = [...chatMessages.filter((m) => m.role !== "system"), { role: "user", content: userMsg }];
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${GROQ_API_KEY}`,
+        },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
+          model: "llama-3.3-70b-versatile",
           max_tokens: 1000,
-          system: CHATBOT_SYSTEM,
-          messages: history.map((m) => ({ role: m.role, content: m.content })),
+          messages: [
+            { role: "system", content: CHATBOT_SYSTEM },
+            ...history.map((m) => ({ role: m.role, content: m.content })),
+          ],
         }),
       });
       const data = await response.json();
-      const reply = data.content?.map((b) => b.text || "").join("") || "Désolé, je rencontre un problème technique. Réessayez dans un instant.";
+      const reply = data.choices?.[0]?.message?.content || "Désolé, je rencontre un problème technique. Réessayez dans un instant.";
       setChatMessages((prev) => [...prev, { role: "assistant", content: reply }]);
     } catch {
       setChatMessages((prev) => [
