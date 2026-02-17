@@ -1,11 +1,13 @@
 # TimeTravel Agency - Webapp Interactive
 
-Webapp pour une agence de voyage temporel fictive, créée avec IA générative.
+Webapp interactive pour une agence de voyage temporel fictive, créée avec IA générative.
+
+**URL du site :** https://timetravel-agency-topaz.vercel.app
 
 ## Stack Technique
-- React 19 + Vite
+- React 19 + Vite 6
 - Lucide React (icônes)
-- API Anthropic Claude (chatbot IA)
+- Groq API + Llama 3.3 70B (chatbot IA)
 - Google Fonts (Cormorant Garamond, Outfit)
 - Hébergement : Vercel
 
@@ -14,7 +16,7 @@ Webapp pour une agence de voyage temporel fictive, créée avec IA générative.
 - Hero section avec scroll reveal animations
 - Galerie de 3 destinations temporelles (Paris 1889, Crétacé -65M, Florence 1504)
 - Cards interactives avec hover effects et modals détaillées
-- Chatbot IA conversationnel (API Claude)
+- Chatbot IA conversationnel (Groq API + Llama 3.3)
 - Quiz de recommandation personnalisée (4 questions)
 - Navigation fluide avec smooth scroll
 - Design responsive (mobile + desktop)
@@ -22,13 +24,22 @@ Webapp pour une agence de voyage temporel fictive, créée avec IA générative.
 
 ## IA Utilisées
 - Code : Claude (Anthropic)
-- Chatbot : Claude Sonnet via API Anthropic
-- Visuels : Unsplash (images haute qualité)
+- Chatbot : Llama 3.3 70B via Groq API
+- Visuels : générés par IA (Projet 1 TimeTravel Agency)
 
 ## Installation
 
 ```bash
 npm install
+```
+
+Créer un fichier `.env` à la racine :
+```
+VITE_GROQ_API_KEY=votre_cle_groq
+```
+
+Lancer le serveur de développement :
+```bash
 npm run dev
 ```
 
@@ -38,7 +49,12 @@ npm run dev
 npm run build
 ```
 
-Le dossier `dist/` généré peut être déployé sur Vercel, Netlify ou GitHub Pages.
+Le site est déployé sur Vercel avec déploiement automatique.
+
+## Crédits
+- Groq API (chatbot IA)
+- Lucide Icons
+- Google Fonts
 
 ## Licence
 Projet pédagogique — M1/M2 Digital & IA
